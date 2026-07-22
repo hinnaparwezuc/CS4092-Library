@@ -1,4 +1,4 @@
-#Data Requirements
+# Data Requirements
 The system must store information about the following:
 
 ## Use Cases-
@@ -20,7 +20,7 @@ Reserve unavailable books
 View all books in library 
   
 
-##Entity : 
+## Entity : 
 
 Staff – staff id(PK), first name, last name --Neha ER 
 
@@ -38,10 +38,10 @@ Loan- loan id (PK), member id (FK), book id (FK), loan date, due date, return da
 
  
 
-##Strong entity: 
+## Strong entity: 
 
 Staff, Member, Library Card, Library, Books 
 
-##Relationships: 
+## Relationships: 
 
 Loan, Reserve 
