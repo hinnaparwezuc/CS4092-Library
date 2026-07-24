@@ -2,13 +2,13 @@
 ---
 | Card ID | Member ID | Activation Date |
 |---------|-----------|-----------------|
-|         |           |                 |
+|    PK   | FK → Member |                 |
 
 ### Book Schema
 ---
 | Book ID | Author First Name | Author Last Name | Genre | Total No. of Copies | Available No. of Copies |
 |---------|-------------------|------------------|-------|---------------------|-------------------------|
-|         |                   |                  |       |                     |                         |
+|    PK     |                   |                  |       |                     |                         |
 
 
 ### Reservation Schema
@@ -27,7 +27,7 @@
 ---
 | staff ID | First Name | Last Name |  
 |---------|-------------------|------------------| 
-|   PF      |                                      
+|   PK      |                                      
 
 ### Member Schema
 ---
