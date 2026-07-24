@@ -9,3 +9,10 @@
 | Book ID | Author First Name | Author Last Name | Genre | Total No. of Copies | Available No. of Copies |
 |---------|-------------------|------------------|-------|---------------------|-------------------------|
 |         |                   |                  |       |                     |                         |
+
+
+### Reservation Schema
+---
+| Reservation ID | Member ID | Book ID | Reservation Date | Reservation Status |
+|----------------|-----------|---------|------------------|--------------------|
+| PK | FK → Member ID | FK → Book ID | | |
