@@ -7,10 +7,17 @@
 
 ### Book Entity
 
+<img src="ERDiagrams/Book.jpg">
+
 ### Library Card Entity
+
+<img src="ERDiagrams/Card1.jpg">
 
 ### Has Card Relationship
 
+<img src="ERDiagrams/Card2.jpg">
+
 ### Reservation Relationship
+
 
 ### Loan Relationship
