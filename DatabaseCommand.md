@@ -33,3 +33,65 @@ CREATE TABLE Loan (
 ```
 
 ## Add foreign keys
+
+```sql
+ALTER TABLE Reservation  
+
+ADD CONSTRAINT fk_reservation_member 
+
+FOREIGN KEY (card_id) 
+
+REFERENCES Library_Card(card_id); 
+
+
+ALTER TABLE Reservation 
+
+ADD CONSTRAINT fk_reservation_book 
+
+FOREIGN KEY (book_id) 
+
+REFERENCES Book(book_id); 
+
+
+```sql
+ALTER TABLE Loan 
+
+ADD CONSTRAINT fk_loan_staff 
+
+FOREIGN KEY (staff_id) 
+
+REFERENCES Staff(staff_id); 
+
+ 
+
+ALTER TABLE Loan 
+
+ADD CONSTRAINT fk_loan_member 
+
+FOREIGN KEY (card_id) 
+
+REFERENCES Library_Card(card_id); 
+```
+
+ 
+
+ALTER TABLE Loan 
+
+ADD CONSTRAINT fk_loan_book 
+
+FOREIGN KEY (book_id) 
+
+REFERENCES Book(book_id); 
+
+ 
+
+ALTER TABLE Loan 
+
+ADD CONSTRAINT fk_loan_reservation 
+
+FOREIGN KEY (reservation_id) 
+
+REFERENCES Reservation(reservation_id); 
+```
+
+ 
