@@ -1,10 +1,10 @@
--- Create database
+## Create database
 
 CREATE DATABASE IF NOT EXISTS Library_System;
 
 USE Library_System;
 
--- Create tables
+## Create tables
 
 ```sql
 CREATE TABLE Reservation (
@@ -30,4 +30,4 @@ CREATE TABLE Loan (
 );
 ```
 
--- Add foreign keys
+## Add foreign keys
