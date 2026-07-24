@@ -70,10 +70,8 @@ ADD CONSTRAINT fk_loan_member
 
 FOREIGN KEY (card_id) 
 
-REFERENCES Library_Card(card_id); 
-```
+REFERENCES Library_Card(card_id);
 
- 
 
 ALTER TABLE Loan 
 
