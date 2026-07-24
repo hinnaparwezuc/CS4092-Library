@@ -1,8 +1,10 @@
 ## Create database
 
+```sql
 CREATE DATABASE IF NOT EXISTS Library_System;
 
 USE Library_System;
+```
 
 ## Create tables
 
