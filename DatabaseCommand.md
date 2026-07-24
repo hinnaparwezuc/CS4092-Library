@@ -6,6 +6,7 @@ USE Library_System;
 
 -- Create tables
 
+```sql
 CREATE TABLE Reservation (
     reservation_id INT AUTO_INCREMENT PRIMARY KEY,
     member_id INT NOT NULL,
@@ -13,7 +14,9 @@ CREATE TABLE Reservation (
     reservation_date DATE NOT NULL,
     reservation_status VARCHAR(30) NOT NULL
 );
+```
 
+```sql
 CREATE TABLE Loan (
     loan_id INT AUTO_INCREMENT PRIMARY KEY,
     staff_id INT NOT NULL,
@@ -25,6 +28,6 @@ CREATE TABLE Loan (
     return_date DATE,
     loan_status VARCHAR(30) NOT NULL
 );
-
+```
 
 -- Add foreign keys
