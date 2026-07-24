@@ -51,7 +51,7 @@ ADD CONSTRAINT fk_reservation_book
 FOREIGN KEY (book_id) 
 
 REFERENCES Book(book_id); 
-
+```
 
 ```sql
 ALTER TABLE Loan 
