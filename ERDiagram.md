@@ -1,8 +1,9 @@
 ### Book Entity
-<img src="Images/Book">
+
+![Book Entity ER Diagram](Images/Book.png)
 
 ### Library Card Entity
-<img src="Images/Card1">
+![Library Card Entity ER Diagram](Images/Card1.png)
 
 ### Has Card Relationship
-<img src="Images/Card2">
+![Has Card Relationship ER Diagram](Images/Card2.png)
