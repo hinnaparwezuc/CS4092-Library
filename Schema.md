@@ -22,3 +22,16 @@
 | Loan ID | Staff ID | Member ID | Book ID | Reservation ID | Loan Date | Due Date | Return Date | Loan Status |
 |---------|----------|-----------|---------|----------------|-----------|----------|-------------|-------------|
 | PK | FK → Staff ID | FK → Member ID | FK → Book ID | FK → Reservation ID (Nullable) | | | Nullable | |
+
+### Staff Schema
+---
+| staff ID | First Name | Last Name |  
+|----------------|-----------|---------|------------------|--------------------|
+| PK |   
+
+### Member Schema
+---
+| Member ID | First Name | Last Name | Email | Phone Noumber |
+|---------|----------|-----------|---------|----------------|-----------|----------|-------------|-------------|
+| PK | 
+ 
