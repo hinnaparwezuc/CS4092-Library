@@ -7,15 +7,15 @@
 
 ### Book Entity
 
-<img src="ERDiagrams/Book.jpg">
+<img src="ERDiagrams/Book.jpg" width="450">
 
 ### Library Card Entity
 
-<img src="ERDiagrams/Card1.jpg">
+<img src="ERDiagrams/Card1.jpg" width="450">
 
 ### Has Card Relationship
 
-<img src="ERDiagrams/Card2.jpg">
+<img src="ERDiagrams/Card2.jpg" width="450">
 
 ### Reservation Relationship
 
