@@ -17,6 +17,17 @@ async function main() {
     const conn = await mysql.createConnection(dbConfig);
     console.log('Connected to library_system database.');
 
+
+// NEW: run a query and get the results back
+    const [rows] = await conn.execute('SELECT * FROM Member');
+
+    // NEW: print each row to the terminal
+    console.log('\nMembers in the database:');
+    rows.forEach(row => {
+        console.log(`  [${row.member_id}] ${row.first_name} ${row.last_name} — ${row.email}`);
+    });
+
+
     await conn.end();
 }
 
