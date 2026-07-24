@@ -7,7 +7,7 @@ USE Library_System;
 ```
 
 ## Create tables
-
+### Reservation Table
 ```sql
 CREATE TABLE Reservation (
     reservation_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -17,7 +17,7 @@ CREATE TABLE Reservation (
     reservation_status VARCHAR(30) NOT NULL
 );
 ```
-
+### Loan Table
 ```sql
 CREATE TABLE Loan (
     loan_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -33,6 +33,7 @@ CREATE TABLE Loan (
 ```
 
 ## Add foreign keys
+### Foreign key for Reservation Table
 
 ```sql
 ALTER TABLE Reservation  
@@ -53,6 +54,7 @@ FOREIGN KEY (book_id)
 REFERENCES Book(book_id); 
 ```
 
+### Foreign Key for Reservation Table
 ```sql
 ALTER TABLE Loan 
 
