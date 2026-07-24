@@ -13,13 +13,13 @@
 
 ### Reservation Schema
 ---
-| Reservation ID | Member ID | Book ID | Reservation Date | Reservation Status |
+| Reservation ID | Card ID | Book ID | Reservation Date | Reservation Status |
 |----------------|-----------|---------|------------------|--------------------|
 | PK | FK → Member ID | FK → Book ID | | |
 
 ### Loan Schema
 ---
-| Loan ID | Staff ID | Member ID | Book ID | Reservation ID | Loan Date | Due Date | Return Date | Loan Status |
+| Loan ID | Staff ID | Card ID | Book ID | Reservation ID | Loan Date | Due Date | Return Date | Loan Status |
 |---------|----------|-----------|---------|----------------|-----------|----------|-------------|-------------|
 | PK | FK → Staff ID | FK → Member ID | FK → Book ID | FK → Reservation ID (Nullable) | | | Nullable | |
 
