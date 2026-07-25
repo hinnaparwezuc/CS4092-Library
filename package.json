@@ -1,0 +1,25 @@
+{
+  "name": "cs4092-library",
+  "version": "1.0.0",
+  "description": "Relational database project for CS4092",
+  "main": "Library_db.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hinnaparwezuc/CS4092-Library.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/hinnaparwezuc/CS4092-Library/issues"
+  },
+  "homepage": "https://github.com/hinnaparwezuc/CS4092-Library#readme",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "mysql2": "^3.23.1"
+  }
+}
