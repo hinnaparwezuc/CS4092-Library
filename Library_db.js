@@ -27,23 +27,23 @@ async function main() {
         console.log(`  [${row.member_id}] ${row.first_name} ${row.last_name} — ${row.email}`);
     });
 
-// Display reservations
-const [reservations] = await conn.execute(
-    'SELECT * FROM Reservation'
-);
+    // Display reservations
+    const [reservations] = await conn.execute(
+        'SELECT * FROM Reservation'
+    );
 
-console.log('\nReservations in the database:');
-console.table(reservations);
+    console.log('\nReservations in the database:');
+    console.table(reservations);
 
-// Display loans
-const [loans] = await conn.execute(
-    'SELECT * FROM Loan'
-);
+    // Display loans
+    const [loans] = await conn.execute(
+        'SELECT * FROM Loan'
+    );
 
-console.log('\nLoans in the database:');
-console.table(loans);
+    console.log('\nLoans in the database:');
+    console.table(loans);
 
-    await conn.end();
+        await conn.end();
 }
 
 main().catch(err => {
