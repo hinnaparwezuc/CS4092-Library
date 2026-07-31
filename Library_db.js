@@ -27,6 +27,7 @@ async function main() {
         console.log(`  [${row.member_id}] ${row.first_name} ${row.last_name} — ${row.email}`);
     });
 
+    
     // Display reservations
     const [reservations] = await conn.execute(
         'SELECT * FROM Reservation'
