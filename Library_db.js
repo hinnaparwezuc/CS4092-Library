@@ -85,7 +85,32 @@ async function cancelReservation(conn, reservationId) {
 
     console.log("Reservation cancelled successfully.");
 }
+// Option 9: View a member's loan history
+async function viewLoanHistory(conn, cardId) {
+    const [history] = await conn.execute(
+        `SELECT
+            l.loan_id,
+            b.title,
+            l.loan_date,
+            l.due_date,
+            l.return_date,
+            l.loan_status
+         FROM Loan l
+         JOIN Book b
+           ON l.book_id = b.book_id
+         WHERE l.card_id = ?
+         ORDER BY l.loan_date DESC`,
+        [cardId]
+    );
 
+    if (history.length === 0) {
+        console.log("No loan history found for this library card.");
+        return;
+    }
+
+    console.log(`\nLoan history for card ${cardId}:`);
+    console.table(history);
+}
 async function main() {
     const conn = await mysql.createConnection(dbConfig);
     console.log('Connected to library_system database.');
@@ -114,8 +139,7 @@ const [loans] = await conn.execute(
 
 console.log('\nLoans in the database:');
 console.table(loans);
-    await returnBook(conn, 2);
-    await cancelReservation(conn, 1);
+    await viewLoanHistory(conn, 1);
     await conn.end();
 }
 
