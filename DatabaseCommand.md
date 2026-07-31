@@ -28,8 +28,8 @@ CREATE TABLE Member (
     phone_no    VARCHAR(20) 
 ); 
 ```
-```sql
 ### Library card table 
+```sql
 CREATE TABLE Library_Card ( 
 card_ID INT AUTO_INCREMENT PRIMARY KEY, 
 member_ID INT NOT NULL, 
@@ -39,9 +39,8 @@ FOREIGN KEY (member_ID)
     	activation_date DATE DEFAULT (CURRENT_DATE()) 
 );
 ```
-
-```sql
 ### Book table 
+```sql
 CREATE TABLE Book ( 
 book_ID INT AUTO_INCREMENT PRIMARY KEY, 
 author_first_name VARCHAR(50) NOT NULL, 
