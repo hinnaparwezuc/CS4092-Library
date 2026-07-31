@@ -20,6 +20,7 @@
   "homepage": "https://github.com/hinnaparwezuc/CS4092-Library#readme",
   "dependencies": {
     "dotenv": "^17.4.2",
-    "mysql2": "^3.23.1"
+    "mysql2": "^3.23.1",
+    "prompt-sync": "^4.2.0"
   }
 }
