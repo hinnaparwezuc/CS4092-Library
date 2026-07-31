@@ -53,7 +53,7 @@ available_copies INT NOT NULL
 );
 ```
 
-#### Reservation Table
+### Reservation Table
 ```sql
 CREATE TABLE Reservation (
     reservation_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -63,7 +63,7 @@ CREATE TABLE Reservation (
     reservation_status VARCHAR(30) NOT NULL
 );
 ```
-#### Loan Table
+### Loan Table
 ```sql
 CREATE TABLE Loan (
     loan_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -79,7 +79,7 @@ CREATE TABLE Loan (
 ```
 
 ## Add foreign keys
-#### Foreign key for Reservation Table
+### Foreign key for Reservation Table
 
 ```sql
 ALTER TABLE Reservation  
@@ -100,7 +100,7 @@ FOREIGN KEY (book_id)
 REFERENCES Book(book_id); 
 ```
 
-#### Foreign Key for Reservation Table
+### Foreign Key for Reservation Table
 ```sql
 ALTER TABLE Loan 
 
@@ -140,6 +140,86 @@ FOREIGN KEY (reservation_id)
 REFERENCES Reservation(reservation_id); 
 ```
 
- 
+## Alter tables
 
- 
+### Altering Book Table to add title
+```sql
+ALTER TABLE Book
+ADD title VARCHAR(100) NOT NULL UNIQUE AFTER book_ID;
+```
+
+### Removing the constraint of UNIQUE from Title attribute of Book Table
+```sql
+ALTER TABLE Book
+DROP INDEX title;
+```
+
+
+## Insert Values into Table
+
+### Inserting into the Staff Table
+```sql
+INSERT INTO Staff (first_name, last_name) 
+VALUES ( 'John', 'Doe'), ( 'Neha', 'Rai'), (
+        'Hinna', 'Parwezhs'), ( 'Aisha', 'Abdurrahman'); 
+```
+
+ ### Inserting into the Member Table
+ ```sql
+INSERT INTO Member (first_name, last_name, email, phone_no) 
+VALUES ('Emily', 'Johnson', 'emily.johnson@email.com', '513-555-0134'),
+        ('Michael', 'Brown', 'michael.brown@email.com', '513-555-0187'),
+        ('Sarah', 'Davis', 'sarah.davis@email.com', '859-555-0219'),
+        ('James', 'Wilson', 'james.wilson@email.com', '937-555-0256'); 
+ ```
+
+### Inserting into the Library Card Table
+```sql
+INSERT INTO Library_Card (member_ID) 
+VALUES (1), (2), (3) (4);
+```
+
+### Inserting into the Book Table
+```sql
+INSERT INTO Book (title, author_first_name, author_last_name, genre, total_copies, available_copies) 
+VALUES ('A Court of Thorns and Roses', 'Sarah J.', 'Maas', 'Fantasy Action', 20 , 20),
+    ('The Kite Runner', 'Khaled', 'Hosseini', 'Historical Fiction', 20 , 20),
+    ('A Thousand Splendid Suns','Khaled','Hosseini','Historical Fiction', 5 , 5),
+    ('And The Mountains Echoed','Khaled','Hosseini','Historical Fiction', 2 , 2),
+    ('Children of Blood and Bone','Tomi','Adeyemi','Fantasy Action', 3, 3),
+    ('Elsewhere','Richard','Russo','Memoir', 20, 20),
+    ('Elsewhere','Gabrielle','Zevin','Fantasy Fiction', 2, 2),
+    ('When the Day Comes','Gabrielle','Meyer','Historical Romance', 10, 10),
+    ('Everything I Know About Love','Dolly','Alderton','Memoir', 5, 5),
+    ('The Diary of a Young Girl','Anne','Frank','Non-Fiction', 30, 30); 
+```
+
+### Inserting into the Reservation Table
+```sql
+INSERT INTO Reservation (card_id, book _id, reservation_date, reservation_status) 
+VALUES (1, 1, ‘2026-07-24', ‘Reserved’) 
+
+INSERT INTO Reservation (card_id, book _id, reservation_date, reservation_status) 
+VALUES (2, 2, ‘2026-07-20', ‘Reserved’) 
+
+INSERT INTO Reservation (card_id, book _id, reservation_date, reservation_status) 
+VALUES (3, 3, ‘2026-07-10', ‘Cancelled’) 
+
+INSERT INTO Reservation (card_id, book _id, reservation_date, reservation_status) 
+VALUES (4, 4, ‘2026-07-22', ‘Completed’) 
+```
+
+### Inserting into the Loan Table
+```sql
+INSERT INTO Loan (staff_id, card_id, book_id, reservation_id, loan_date, due_date, return_date, loan_status)  
+VALUES (1, 1, 1, 1, '2026-07-24', '2026-08-07', NULL, 'Checked Out');  
+
+INSERT INTO Loan (staff_id, card_id, book_id, reservation_id, loan_date, due_date, return_date, loan_status)  
+VALUES (2, 2, 2, 2, '2026-07-20', '2026-08-03', NULL, 'Checked Out');  
+
+INSERT INTO Loan (staff_id, card_id, book_id, reservation_id, loan_date, due_date, return_date, loan_status)  
+VALUES (3, 3, 3, 3, '2026-07-10', '2026-07-24', '2026-07-22', 'Returned');  
+
+INSERT INTO Loan (staff_id, card_id, book_id, reservation_id, loan_date, due_date, return_date, loan_status)  
+VALUES (4, 4, 4, 4, '2026-07-22', '2026-08-05', NULL, 'Checked Out'); 
+```
