@@ -28,6 +28,7 @@ CREATE TABLE Member (
     phone_no    VARCHAR(20) 
 ); 
 ```
+
 ### Library card table 
 ```sql
 CREATE TABLE Library_Card ( 
@@ -39,6 +40,7 @@ FOREIGN KEY (member_ID)
     	activation_date DATE DEFAULT (CURRENT_DATE()) 
 );
 ```
+
 ### Book table 
 ```sql
 CREATE TABLE Book ( 
