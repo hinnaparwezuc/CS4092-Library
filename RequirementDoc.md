@@ -2,6 +2,8 @@
 The system must store information about the following:
 
 ## Use Cases-
+
+### Staff User-
  
 Staff should be able to check out the books for members 
 Add books to the library system 
