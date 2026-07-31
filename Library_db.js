@@ -5,7 +5,6 @@
 
 require('dotenv').config();
 const mysql = require('mysql2/promise');
-
 const dbConfig = {
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -13,10 +12,53 @@ const dbConfig = {
     database: process.env.DB_NAME
 };
 
+// Option 7: Return a book
+async function returnBook(conn, loanId) {
+    const [loans] = await conn.execute(
+        `SELECT loan_id, book_id, loan_status
+         FROM Loan
+         WHERE loan_id = ?`,
+        [loanId]
+    );
+
+    if (loans.length === 0) {
+        console.log('Loan not found.');
+        return;
+    }
+
+    if (loans[0].loan_status === 'Returned') {
+        console.log('This book has already been returned.');
+        return;
+    }
+
+    await conn.beginTransaction();
+
+    try {
+        await conn.execute(
+            `UPDATE Loan
+             SET return_date = CURRENT_DATE(),
+                 loan_status = 'Returned'
+             WHERE loan_id = ?`,
+            [loanId]
+        );
+
+        await conn.execute(
+            `UPDATE Book
+             SET available_copies = LEAST(available_copies + 1, total_copies)
+             WHERE book_id = ?`,
+            [loans[0].book_id]
+        );
+
+        await conn.commit();
+        console.log('Book returned successfully.');
+    } catch (error) {
+        await conn.rollback();
+        throw error;
+    }
+}
 async function main() {
     const conn = await mysql.createConnection(dbConfig);
     console.log('Connected to library_system database.');
-
 
 // NEW: run a query and get the results back
     const [rows] = await conn.execute('SELECT * FROM Member');
@@ -27,24 +69,24 @@ async function main() {
         console.log(`  [${row.member_id}] ${row.first_name} ${row.last_name} — ${row.email}`);
     });
 
-    
-    // Display reservations
-    const [reservations] = await conn.execute(
-        'SELECT * FROM Reservation'
-    );
+// Display reservations
+const [reservations] = await conn.execute(
+    'SELECT * FROM Reservation'
+);
 
-    console.log('\nReservations in the database:');
-    console.table(reservations);
+console.log('\nReservations in the database:');
+console.table(reservations);
 
-    // Display loans
-    const [loans] = await conn.execute(
-        'SELECT * FROM Loan'
-    );
+// Display loans
+const [loans] = await conn.execute(
+    'SELECT * FROM Loan'
+);
 
-    console.log('\nLoans in the database:');
-    console.table(loans);
+console.log('\nLoans in the database:');
+console.table(loans);
+    await returnBook(conn, 2);
 
-        await conn.end();
+    await conn.end();
 }
 
 main().catch(err => {
