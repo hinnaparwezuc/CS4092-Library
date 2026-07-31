@@ -1,4 +1,4 @@
-## Create database
+# Create database
 
 ```sql
 CREATE DATABASE IF NOT EXISTS Library_System;
@@ -6,7 +6,52 @@ CREATE DATABASE IF NOT EXISTS Library_System;
 USE Library_System;
 ```
 
+
 ## Create tables
+
+### Staff Table
+```sql
+CREATE TABLE Staff ( 
+    staff_id    INT AUTO_INCREMENT PRIMARY KEY, 
+    first_name  VARCHAR(50) NOT NULL, 
+    last_name   VARCHAR(50) NOT NULL 
+); 
+```
+
+### Member Table
+```sql
+CREATE TABLE Member ( 
+    member_id   INT AUTO_INCREMENT PRIMARY KEY, 
+    first_name  VARCHAR(50) NOT NULL, 
+    last_name   VARCHAR(50) NOT NULL, 
+    email       VARCHAR(100) UNIQUE, 
+    phone_no    VARCHAR(20) 
+); 
+```
+```sql
+### Library card table 
+CREATE TABLE Library_Card ( 
+card_ID INT AUTO_INCREMENT PRIMARY KEY, 
+member_ID INT NOT NULL, 
+CONSTRAINT fk_member 
+FOREIGN KEY (member_ID)  
+       		REFERENCES Member(member_id), 
+    	activation_date DATE DEFAULT (CURRENT_DATE()) 
+);
+```
+
+```sql
+### Book table 
+CREATE TABLE Book ( 
+book_ID INT AUTO_INCREMENT PRIMARY KEY, 
+author_first_name VARCHAR(50) NOT NULL, 
+author_last_name VARCHAR(50) NOT NULL, 
+genre VARCHAR(50) NOT NULL, 
+total_copies INT NOT NULL, 
+available_copies INT NOT NULL 
+);
+```
+
 #### Reservation Table
 ```sql
 CREATE TABLE Reservation (
@@ -93,5 +138,7 @@ FOREIGN KEY (reservation_id)
 
 REFERENCES Reservation(reservation_id); 
 ```
+
+ 
 
  
