@@ -2,7 +2,6 @@
 
 ```sql
 CREATE DATABASE IF NOT EXISTS Library_System;
-
 USE Library_System;
 ```
 
@@ -83,60 +82,36 @@ CREATE TABLE Loan (
 
 ```sql
 ALTER TABLE Reservation  
-
 ADD CONSTRAINT fk_reservation_member 
-
 FOREIGN KEY (card_id) 
-
 REFERENCES Library_Card(card_id); 
 
-
 ALTER TABLE Reservation 
-
 ADD CONSTRAINT fk_reservation_book 
-
 FOREIGN KEY (book_id) 
-
 REFERENCES Book(book_id); 
 ```
 
 ### Foreign Key for Reservation Table
 ```sql
 ALTER TABLE Loan 
-
 ADD CONSTRAINT fk_loan_staff 
-
 FOREIGN KEY (staff_id) 
-
 REFERENCES Staff(staff_id); 
 
- 
-
 ALTER TABLE Loan 
-
 ADD CONSTRAINT fk_loan_member 
-
 FOREIGN KEY (card_id) 
-
 REFERENCES Library_Card(card_id);
 
-
 ALTER TABLE Loan 
-
 ADD CONSTRAINT fk_loan_book 
-
 FOREIGN KEY (book_id) 
-
 REFERENCES Book(book_id); 
 
- 
-
 ALTER TABLE Loan 
-
 ADD CONSTRAINT fk_loan_reservation 
-
 FOREIGN KEY (reservation_id) 
-
 REFERENCES Reservation(reservation_id); 
 ```
 
@@ -197,16 +172,16 @@ VALUES ('A Court of Thorns and Roses', 'Sarah J.', 'Maas', 'Fantasy Action', 20 
 ### Inserting into the Reservation Table
 ```sql
 INSERT INTO Reservation (card_id, book _id, reservation_date, reservation_status) 
-VALUES (1, 1, ‘2026-07-24', ‘Reserved’) 
+VALUES (1, 1, ‘2026-07-24', ‘Reserved’); 
 
 INSERT INTO Reservation (card_id, book _id, reservation_date, reservation_status) 
-VALUES (2, 2, ‘2026-07-20', ‘Reserved’) 
+VALUES (2, 2, ‘2026-07-20', ‘Reserved’);
 
 INSERT INTO Reservation (card_id, book _id, reservation_date, reservation_status) 
-VALUES (3, 3, ‘2026-07-10', ‘Cancelled’) 
+VALUES (3, 3, ‘2026-07-10', ‘Cancelled’); 
 
 INSERT INTO Reservation (card_id, book _id, reservation_date, reservation_status) 
-VALUES (4, 4, ‘2026-07-22', ‘Completed’) 
+VALUES (4, 4, ‘2026-07-22', ‘Completed’);
 ```
 
 ### Inserting into the Loan Table
