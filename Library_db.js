@@ -244,8 +244,13 @@ async function main() {
     } else if(staffMenuChoice == "6"){
         
     } else if(staffMenuChoice == "7"){
-        
+        const LoanId = Number(prompt("Enter the Loan ID to return: "));
+        await returnBook(conn, loadid);
+
     } else if(staffMenuChoice == "8"){
+        const cardId = Number(prompt("Enter the library card ID: "));
+        const bookId = Number(prompt("Enter the unavailable book ID: "));
+        await reserveBook(conn, cardId, bookId);
         
     } else if(staffMenuChoice == "9"){
         
