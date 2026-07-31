@@ -111,6 +111,30 @@ async function viewLoanHistory(conn, cardId) {
     console.log(`\nLoan history for card ${cardId}:`);
     console.table(history);
 }
+// Option 10: View overdue loans
+async function viewOverdueLoans(conn) {
+    const [overdue] = await conn.execute(
+        `SELECT
+            l.loan_id,
+            b.title,
+            l.card_id,
+            l.due_date,
+            l.loan_status
+         FROM Loan l
+         JOIN Book b
+            ON l.book_id = b.book_id
+         WHERE l.due_date < CURRENT_DATE()
+           AND l.loan_status = 'Checked Out'`
+    );
+
+    if (overdue.length === 0) {
+        console.log("\nNo overdue loans found.");
+        return;
+    }
+
+    console.log("\nOverdue loans:");
+    console.table(overdue);
+}
 async function main() {
     const conn = await mysql.createConnection(dbConfig);
     console.log('Connected to library_system database.');
@@ -139,7 +163,7 @@ const [loans] = await conn.execute(
 
 console.log('\nLoans in the database:');
 console.table(loans);
-    await viewLoanHistory(conn, 1);
+    await viewOverdueLoans(conn);
     await conn.end();
 }
 
