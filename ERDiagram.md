@@ -1,8 +1,13 @@
 ### Staff Entity
+
+ <img width="2729" height="1808" alt="IMG_1826 (2) 2" src="https://github.com/user-attachments/assets/dbea16c3-a9c6-49ea-9c44-04fe342ef69f" />
+
+
  
 ### Member Entity
 
-<img width="1" height="2" alt="image" src="https://github.com/user-attachments/assets/4b113ef1-2683-4826-b07f-1fc46136f396" />
+ <img width="2916" height="2260" alt="IMG_1826 (1)" src="https://github.com/user-attachments/assets/d65e2330-4406-4df9-a321-796ee0392a72" />
+
 
 
 ### Book Entity
