@@ -31,7 +31,79 @@ async function printMenu(conn, staff_firstname, staff_lastname) {
 10) View overdue loans
 0) Exit`);
 }
-
+// Book searching options
+async function bookSearchMenu(conn) {
+    console.log("\nHow would you like to search for the book:\n");
+    console.log(`1) By Title
+2) By Author
+3) By Genre`);
+}
+// Option 1: View all books
+async function viewAllBooks(conn) {
+    const [books] = await conn.execute('SELECT * FROM Book');
+    if (books.length === 0) {
+        console.log("No books in the library.");
+        return;
+    }
+    console.log('\nBooks in the library:');
+    console.table(books);
+}
+// Option 2: Search for a book
+async function searchForBook(conn) {
+    bookSearchMenu(conn);
+    var searchOption = prompt("Enter your choice: ");
+    if (searchOption == "1") {
+        var bookTitle = prompt("What is the title of the book: ");
+        const [books] = await conn.execute(
+            'SELECT * FROM Book WHERE title = ?',
+            [bookTitle]
+        );
+        if (books.length === 0) {
+        console.log("\nThere are no books that have such title in the library.");
+        return;
+        }
+        console.log('\nHere are the books in the library with that title:');
+        console.table(books);
+    } else if (searchOption == "2") {
+        var authorFN = prompt("What is the author's first name: ");
+        var authorLN = prompt("What is the author's last name: ");
+        const [books] = await conn.execute(
+            'SELECT * FROM Book WHERE author_first_name = ? AND author_last_name = ?',
+            [authorFN, authorLN]
+        );
+        if (books.length === 0) {
+        console.log("\nThere are no books that were written by that author in the library.");
+        return;
+        }
+        console.log('\nHere are the books in the library written by that author:');
+        console.table(books);
+    } else {
+        var bookGenre = prompt("What is the genre of the book: ");
+        const [books] = await conn.execute(
+            'SELECT * FROM Book WHERE genre = ?',
+            [bookGenre]
+        );
+        if (books.length === 0) {
+        console.log("\nThere are no books classified under that genre in the library.");
+        return;
+        }
+        console.log('\nHere are the books in the library that are under that genre:');
+        console.table(books);
+    }
+    return;
+}
+// Option 3: View available books only
+async function viewAllAvailableBook(conn){
+    const [availableBooks] = await conn.execute(
+        'SELECT * FROM Book WHERE available_copies > 0'
+    );
+    if (availableBooks.length === 0) {
+        console.log("\nNo available books in the library.");
+        return;
+    }
+    console.log("\nAvailable books in the library:");
+    console.table(availableBooks);
+}
 // Option 7: Return a book
 async function returnBook(conn, loanId) {
     const [loans] = await conn.execute(
@@ -76,7 +148,6 @@ async function returnBook(conn, loanId) {
         throw error;
     }
 }
-
 // Option 8: Reserve book when unavailable
 async function reserveBook(conn, cardId, bookId) {
 
@@ -232,11 +303,11 @@ async function main() {
 
     }
     if (staffMenuChoice == "1"){
-
+        viewAllBooks(conn);
     } else if(staffMenuChoice == "2"){
-
+        searchForBook(conn);
     } else if(staffMenuChoice == "3"){
-
+        viewAllAvailableBook(conn);
     } else if(staffMenuChoice == "4"){
         
     } else if(staffMenuChoice == "5"){
@@ -250,7 +321,7 @@ async function main() {
     } else if(staffMenuChoice == "9"){
         
     } else {
-        
+
     }
 
     
