@@ -233,12 +233,12 @@ async function main() {
             console.log('Something went wrong: ' + err.message);
         }
     }
-
-    await conn.end();
-    rl.close();
 }
 
-main().catch(err => {
-    console.error('Something went wrong:', err.message);
-    rl.close();
-});
+main()
+    .then(() => process.exit(0))
+    .catch(err => {
+        console.error('Something went wrong:', err.message);
+        rl.close();
+        process.exit(1);
+    });
