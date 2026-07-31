@@ -6,9 +6,9 @@
 
 ### Book Schema
 ---
-| Book ID | Author First Name | Author Last Name | Genre | Total No. of Copies | Available No. of Copies |
-|---------|-------------------|------------------|-------|---------------------|-------------------------|
-|    PK     |                   |                  |       |                     |                         |
+| Book ID | Title | Author First Name | Author Last Name | Genre | Total No. of Copies | Available No. of Copies |
+|------|---|-------------------|------------------|-------|---------------------|-------------------------|
+|    PK    | |                   |                  |       |                     |                         |
 
 
 ### Reservation Schema
