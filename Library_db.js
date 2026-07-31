@@ -56,6 +56,36 @@ async function returnBook(conn, loanId) {
         throw error;
     }
 }
+
+// Option 8: Cancel a reservation
+async function cancelReservation(conn, reservationId) {
+    const [reservations] = await conn.execute(
+        `SELECT reservation_id, reservation_status
+         FROM Reservation
+         WHERE reservation_id = ?`,
+        [reservationId]
+    );
+
+    if (reservations.length === 0) {
+        console.log("Reservation not found.");
+        return;
+    }
+
+    if (reservations[0].reservation_status === "Cancelled") {
+        console.log("Reservation is already cancelled.");
+        return;
+    }
+
+    await conn.execute(
+        `UPDATE Reservation
+         SET reservation_status = 'Cancelled'
+         WHERE reservation_id = ?`,
+        [reservationId]
+    );
+
+    console.log("Reservation cancelled successfully.");
+}
+
 async function main() {
     const conn = await mysql.createConnection(dbConfig);
     console.log('Connected to library_system database.');
@@ -85,7 +115,7 @@ const [loans] = await conn.execute(
 console.log('\nLoans in the database:');
 console.table(loans);
     await returnBook(conn, 2);
-
+    await cancelReservation(conn, 1);
     await conn.end();
 }
 
