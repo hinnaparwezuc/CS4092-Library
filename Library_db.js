@@ -15,6 +15,23 @@ const dbConfig = {
     database: process.env.DB_NAME
 };
 
+// Printing the menu
+async function printMenu(conn, staff_firstname, staff_lastname) {
+    console.log(`\nWelcome staff: ${staff_firstname} ${staff_lastname}`);
+    console.log(`Library Management System
+1) View all books
+2) Search for a book
+3) View available books only
+4) Register a new member
+5) Issue a library card to a member
+6) Check out a book
+7) Return a book
+8) Reserve a book (when unavailable)
+9) View a member's loan history (current + past)
+10) View overdue loans
+0) Exit`);
+}
+
 // Option 7: Return a book
 async function returnBook(conn, loanId) {
     const [loans] = await conn.execute(
@@ -139,6 +156,9 @@ async function viewOverdueLoans(conn) {
     console.log("\nOverdue loans:");
     console.table(overdue);
 }
+
+
+// main program
 async function main() {
     const conn = await mysql.createConnection(dbConfig);
     console.log('Connected to library_system database.\n');
@@ -146,7 +166,8 @@ async function main() {
     console.log("Welcome to our Library System.\nLet's get you checked in! What would you like to do?\n");
     console.log("L) Staff Login\nR) New staff registeration.\n");
     var userCheckInChoice = prompt("Please select an option (L or R) below: ");
-
+    var staff = null;
+    var staffId = null;
     // check what check-in option user selected
     if (userCheckInChoice == "L") { //user selected to login
         console.log("\nGreat, let's get you logged in. Answer the following questions:");
@@ -156,7 +177,7 @@ async function main() {
             'SELECT staff_id FROM Staff WHERE first_name = ? AND last_name = ?',
             [staffFirstName, staffLastName]
         );
-        var staffId = staffIds.length > 0 ? staffIds[0].staff_id : null;
+        staffId = staffIds.length > 0 ? staffIds[0].staff_id : null;
         // check if user is a registered staff
         if (staffId == null) { //if user is not a registered staff, ask to register them
             console.log("\nYou are not currently registered as a staff in this library system.\n");
@@ -177,18 +198,17 @@ async function main() {
                 'SELECT * FROM Staff WHERE first_name = ? AND last_name = ?',
                 [staffFirstName, staffLastName]
             );
-            const staff = staffs[0];
-            const staffId = staff.staff_id;
+            staff = staffs[0];
+            staffId = staff.staff_id;
             console.log(`Successfully registered as ${staff.first_name} ${staff.last_name}!`);
         } else{
             const [staffs] = await conn.execute(
             'SELECT * FROM Staff WHERE staff_id = ?',
             [staffId]
             );
-            const staff = staffs[0];
+            staff = staffs[0];
             console.log(`Successfully logged in as ${staff.first_name} ${staff.last_name}!`);
         }
-        return;
     } 
     else{ //user selected to register
         console.log("\nWelcome new staff. Let's create an account for you.");
@@ -202,13 +222,39 @@ async function main() {
             'SELECT * FROM Staff WHERE first_name = ? AND last_name = ?',
             [staffFirstName, staffLastName]
         );
-        const staff = staffs[0];
-        const staffId = staff.staff_id;
+        staff = staffs[0];
+        staffId = staff.staff_id;
         console.log(`Successfully registered as ${staff.first_name} ${staff.last_name}!`);
-        return;
     }
+    printMenu(conn, staff.first_name, staff.last_name);
+    var staffMenuChoice = prompt("Select an option (0-10): ");
+    if (staffMenuChoice == "0") {
+
+    }
+    if (staffMenuChoice == "1"){
+
+    } else if(staffMenuChoice == "2"){
+
+    } else if(staffMenuChoice == "3"){
+
+    } else if(staffMenuChoice == "4"){
+        
+    } else if(staffMenuChoice == "5"){
+        
+    } else if(staffMenuChoice == "6"){
+        
+    } else if(staffMenuChoice == "7"){
+        
+    } else if(staffMenuChoice == "8"){
+        
+    } else if(staffMenuChoice == "9"){
+        
+    } else {
+        
+    }
+
     
-// OLD CODE: run a query and get the results back
+    // OLD CODE: run a query and get the results back
     // const [rows] = await conn.execute('SELECT * FROM Member');
 
     // // NEW: print each row to the terminal
