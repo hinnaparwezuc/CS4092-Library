@@ -57,33 +57,34 @@ async function returnBook(conn, loanId) {
     }
 }
 
-// Option 8: Cancel a reservation
-async function cancelReservation(conn, reservationId) {
-    const [reservations] = await conn.execute(
-        `SELECT reservation_id, reservation_status
-         FROM Reservation
-         WHERE reservation_id = ?`,
-        [reservationId]
+// Option 8: Reserve book when unavailable
+async function reserveBook(conn, cardId, bookId) {
+
+    const [books] = await conn.execute(
+        `SELECT available_copies
+         FROM Book
+         WHERE book_id = ?`,
+        [bookId]
     );
 
-    if (reservations.length === 0) {
-        console.log("Reservation not found.");
+    if (books.length === 0) {
+        console.log("Book not found.");
         return;
     }
 
-    if (reservations[0].reservation_status === "Cancelled") {
-        console.log("Reservation is already cancelled.");
+    if (books[0].available_copies > 0) {
+        console.log("Book is available. No reservation needed.");
         return;
     }
 
     await conn.execute(
-        `UPDATE Reservation
-         SET reservation_status = 'Cancelled'
-         WHERE reservation_id = ?`,
-        [reservationId]
+        `INSERT INTO Reservation
+        (card_id, book_id, reservation_date, reservation_status)
+        VALUES (?, ?, CURRENT_DATE(), 'Reserved')`,
+        [cardId, bookId]
     );
 
-    console.log("Reservation cancelled successfully.");
+    console.log("Book reserved successfully.");
 }
 // Option 9: View a member's loan history
 async function viewLoanHistory(conn, cardId) {
@@ -163,7 +164,6 @@ const [loans] = await conn.execute(
 
 console.log('\nLoans in the database:');
 console.table(loans);
-    await viewOverdueLoans(conn);
     await conn.end();
 }
 
