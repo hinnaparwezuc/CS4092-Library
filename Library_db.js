@@ -244,20 +244,25 @@ async function main() {
     } else if(staffMenuChoice == "6"){
         
     } else if(staffMenuChoice == "7"){
-        const LoanId = Number(prompt("Enter the Loan ID to return: "));
-        await returnBook(conn, loadid);
+        const loanId = Number(prompt("Enter the Loan ID to return: "));
+        await returnBook(conn, loanId);
 
     } else if(staffMenuChoice == "8"){
         const cardId = Number(prompt("Enter the library card ID: "));
         const bookId = Number(prompt("Enter the unavailable book ID: "));
         await reserveBook(conn, cardId, bookId);
-        
-    } else if(staffMenuChoice == "9"){
-        
-    } else {
-        
-    }
 
+    } else if(staffMenuChoice == "9"){
+        const cardId = Number(prompt("Enter the library card ID: "));
+        await viewLoanHistory(conn, cardId);
+    
+    } else if (staffMenuChoice == "10") {
+    await viewOverdueLoans(conn);
+
+    } else {
+        console.log("Invalid option.");
+    }
+    await conn.end();
     
     // OLD CODE: run a query and get the results back
     // const [rows] = await conn.execute('SELECT * FROM Member');
