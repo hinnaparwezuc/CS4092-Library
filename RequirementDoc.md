@@ -1,4 +1,4 @@
-# Data Requirements
+### Data Requirements
 The Library system must store information about the following:
  
 - Staff – staff id(PK), first name, last name  – Neha ER 
@@ -9,16 +9,14 @@ The Library system must store information about the following:
 - Reservation – reservation id (PK), member id (FK), book id (FK), reservation date – (Hinna ER) 
 - Loan – loan id (PK), member id (FK), book id (FK), loan date, due date, return date, loan status – (Hinna ER) 
 
-## Strong entities: 
+### Strong entities: 
 Staff, Member, Library Card, Library, Books 
 
-## Relationships: 
+### Relationships: 
 Loan, Reserve 
 
 
-## Use Cases
-
-### Staff User:
+### Use Cases (Staff User):
 - Log into the library system
 - Register as a staff into the library system
 - Staff should be able to check out the books for members  
